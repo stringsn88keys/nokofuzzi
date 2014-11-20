@@ -25,6 +25,13 @@ module Nokogiri
         end
         xml_dup
       end
+      def set_text_at_xpath(xpath, text)
+        xml_dup = self.dup
+        xml_dup.xpath(xpath).each do |xml_node|
+          xml_node.content = text
+        end
+        xml_dup
+      end
     end
   end
 end

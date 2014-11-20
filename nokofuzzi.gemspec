@@ -2,7 +2,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |s|
   s.name = 'nokofuzzi'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.authors = ['Thomas Powell']
   s.email = ['twilliampowell@gmail.com']
   s.homepage = 'https://github.com/stringsn88keys/nokofuzzi'

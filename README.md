@@ -35,3 +35,13 @@ modified_xml = Nokogiri::XML('<a><b></b><c><b></b></c></a>').without_xpath('//b'
 
 puts modified_xml.to_xml # <?xml version="1.0"?><a><c/></a>
 ```
+
+## set_text_at_xpath(xpath, text)
+`set_text_at_xpath` replaces the text for a node (as well as contents below that node)
+
+``` ruby
+modified_xml = Nokogiri::XML('<a><b></b><c><b></b></c></a>').set_text_at_xpath('//c', "HI")
+
+puts modified_xml.to_xml # <?xml version="1.0"?><a><b/><c>HI</c></a>
+```
+

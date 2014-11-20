@@ -13,8 +13,25 @@ describe Nokogiri::XML::Document do
       expect(source_xml.without_xpath('//c').to_xml).to eq(expected_c_xml.to_xml)
     end
     it "expects removing //b to remove everything <b> node and below" do
-      expect(source_xml.without_xpath('//c').to_xml).to eq(expected_c_xml.to_xml)
+      expect(source_xml.without_xpath('//b').to_xml).to eq(expected_b_xml.to_xml)
     end
+  end
+  describe "#set_text_at_xpath" do
+    let(:source_xml) { Nokogiri::XML('<node><a><c></c></a><b><c></c></b></node>')}
+    let(:expected_b_c_xml) { Nokogiri::XML('<node><a><c></c></a><b><c>HI</c></b></node>') }
+    let(:expected_c_xml) { Nokogiri::XML('<node><a><c>HI</c></a><b><c>HI</c></b></node>') }
+    let(:expected_b_xml) { Nokogiri::XML('<node><a><c></c></a><b>HI</b></node>') }
+
+    it "expects removing //b/c to replacing the <c> node text inside <b>" do
+      expect(source_xml.set_text_at_xpath('//b/c', "HI").to_xml).to eq(expected_b_c_xml.to_xml)
+    end
+    it "expects removing //c to replace text for all <c> nodes" do
+      expect(source_xml.set_text_at_xpath('//c', "HI").to_xml).to eq(expected_c_xml.to_xml)
+    end
+    it "expects removing //b to replace text for the <b> node and remove the <c> node" do
+      expect(source_xml.set_text_at_xpath('//b', "HI").to_xml).to eq(expected_b_xml.to_xml)
+    end
+
   end
 
   describe '#each_missing' do
