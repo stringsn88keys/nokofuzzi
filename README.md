@@ -46,13 +46,13 @@ puts modified_xml.to_xml # <?xml version="1.0"?><a><b/><c>HI</c></a>
 ```
 
 ## fuzz_at_xpath(xpath)
-`fuzz_at_xpath` passes each node matching the xpath to a given block which contains the operations to 
+`fuzz_at_xpath` passes each node matching the xpath to a given block which contains the operations to
 perform on the node
 
 ``` ruby
 modified_xml = Nokogiri::XML('<a><b>HI</b><c><b>HI</b></c></a>').fuzz_at_xpath do |node|
   node.content = "-- #{node.text} --"
 end
-```
 
 puts modified_xml.to_xml # <?xml version="1.0"?><a><b>-- HI --</b><c><b>-- HI --</b></c></a>
+```
