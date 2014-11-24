@@ -34,6 +34,19 @@ describe Nokogiri::XML::Document do
 
   end
 
+  describe "#fuzz_at_xpath" do
+    let(:source_xml) { Nokogiri::XML('<node><a><c>HI</c></a><b><c>BYE</c></b></node>')}
+    let(:expected_xml) { Nokogiri::XML('<node><a><c>_HI</c></a><b><c>_BYE</c></b></node>') }
+
+    it "expects fuzzing //c should make the modification in the block on all //c nodes." do
+      expect(
+        source_xml.fuzz_at_xpath("//c") do |node|
+          node.content = "_#{node.text}"
+        end.to_xml
+      ).to eq(expected_xml.to_xml)
+    end
+  end
+
   describe '#each_missing' do
     let(:source_xml) { Nokogiri::XML('<node><a></a><b><c></c></b></node>')}
     let(:altered_xmls) do

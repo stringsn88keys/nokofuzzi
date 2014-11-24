@@ -32,6 +32,13 @@ module Nokogiri
         end
         xml_dup
       end
+      def fuzz_at_xpath(xpath)
+        xml_dup = self.dup
+        xml_dup.xpath(xpath).each do |xml_node|
+          yield xml_node
+        end
+        xml_dup
+      end
     end
   end
 end
