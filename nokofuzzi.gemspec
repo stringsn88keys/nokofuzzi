@@ -2,7 +2,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |s|
   s.name = 'nokofuzzi'
-  s.version = '0.1.3'
+  s.version = '0.1.4'
   s.authors = ['Thomas Powell']
   s.email = ['twilliampowell@gmail.com']
   s.homepage = 'https://github.com/stringsn88keys/nokofuzzi'
@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir.glob("{test,spec,features}/**/*")
   s.executables = Dir.glob("bin/*").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
-  s.add_dependency 'nokogiri', '>= 1.6', '< 1.9'
+  s.add_dependency 'nokogiri', '>= 1.6'
   s.add_development_dependency 'rspec', '~> 3.0'
 end
